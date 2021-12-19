@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Movie = () => {
-  return (
-    <div>
+	return (
+		<div>
       
-    </div>
-  )
+		</div>
+	)
 }
 
 export default Movie

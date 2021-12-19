@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react'
 
 const GlobalProvider  = () => {
-  return (
-    <div>
+	return (
+		<div>
       
-    </div>
-  )
+		</div>
+	)
 }
 
 export default GlobalProvider 
