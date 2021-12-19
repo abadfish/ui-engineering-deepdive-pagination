@@ -1,10 +1,22 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext } from 'react'
 
-const GlobalProvider  = () => {
+const initialState = {
+	loading: false 
+}
+const MovieContext = createContext(initialState)
+
+
+// eslint-disable-next-line react/prop-types
+const GlobalProvider  = ({ children }) => {
+
+	const values = {
+		loading: false
+	}
+	
 	return (
-		<div>
-      
-		</div>
+		<MovieContext.Provider value={ values }>
+			{ children }
+		</MovieContext.Provider>
 	)
 }
 
