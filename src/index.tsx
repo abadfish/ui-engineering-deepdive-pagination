@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
+import Movies from './views/Movies'
+import Movie from './views/Movies/Movie'
 import "./styles.css";
 
 class App extends React.Component {
