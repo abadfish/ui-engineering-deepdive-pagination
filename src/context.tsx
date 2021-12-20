@@ -20,6 +20,13 @@ const MovieContext = createContext(initialState)
 // eslint-disable-next-line react/prop-types
 const GlobalProvider:React.FC<State>  = ({ children }) => {
 
+	const fetchMovies = (searchTerm:string) => {
+		return fetch('')
+	}
+	const fetchMovie = (movieId:number) => {
+		return fetch('')
+	}
+
 	const values = {
 		loading: false
 	}
