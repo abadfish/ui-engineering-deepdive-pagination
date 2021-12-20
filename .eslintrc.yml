@@ -30,3 +30,11 @@ rules:
   semi:
     - error
     - never
+  typescript-eslint/no-empty-function: 0
+  # '@typescript-eslint/no-empty-function':
+  #   - error
+  # eslint no-empty-function: 
+  #   - error 
+  #   allow: 
+  #     - generatorFunctions
+  #     - arrowFunctions

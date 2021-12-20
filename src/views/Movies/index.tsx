@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Movie } from '../../index.d'
+import PageButtons from '../../components/PageButtons'
 
 const API_KEY = 'b411e086'
 // process.env.OMDB_API_KEY
@@ -48,6 +49,7 @@ const Movies = () => {
 			/>
 			<button onClick={ queryOmdbApi }>fetch movies</button>
 			{ movieList }
+			<PageButtons page={ searchParams.page } />
 		</div>
 	)
 }
