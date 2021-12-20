@@ -6,6 +6,8 @@ const API_KEY = 'b411e086'
 
 const Movies = () => {
 
+	// props will be page number, next page, movies, search term
+
 	const [movies, setMovies] = useState({})
 	console.log(movies)
 
