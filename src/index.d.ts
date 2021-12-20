@@ -2,9 +2,9 @@
 declare module '*.css' { const url: string; export default url }
 
 export interface Movie {
-	imdbId: string
+	imdbID: string
 	Title: string
 	Poster: string
-	Tear: number
+	Year: number
 	Type: string
 }
