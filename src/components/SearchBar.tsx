@@ -10,7 +10,9 @@ const SearchBar: React.FC = () => {
 	}
 
 	const queryOmdbApi = () => {
-		fetchMovies(searchTerm, page)
+		if (searchTerm) {
+			fetchMovies(searchTerm, page)
+		}
 	}
 
 	return (
