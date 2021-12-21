@@ -31,7 +31,7 @@ interface State {
 	errors?: any
 	movies?: Movie[]
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	movie?: any
+	movie?: Movie | null
 	searchTerm: string
 	page: number
 	movieCount: number
@@ -47,7 +47,7 @@ const initialState:State = {
 	loading: false,
 	errors: {},
 	movies: [],
-	movie: {},
+	movie: null,
 	searchTerm: '',
 	page: 1,
 	movieCount: 0,
@@ -75,7 +75,7 @@ const reducer:React.Reducer<State, Action> = (state, action) => {
 			loading: false,
 			errors: action.payload,
 			movies: [],
-			movie: {},
+			movie: null,
 			movieCount: 0
 		}
 	case ActionType.SUCCESSFUL_MOVIES_FETCH:
