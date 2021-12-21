@@ -1,30 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { MovieContext } from '../context'
 
 const PageButtons: React.FC = () => {
 
-	const { page, incrementPage, decrementPage, movieCount } = useContext(MovieContext)
+	const { page, incrementPage, decrementPage, movieCount, setPageNum } = useContext(MovieContext)
 
-	const [pageNumber, setPageNumber] = useState('')
-	console.log(movieCount, pageNumber)
-
-	const choosePage = (e:React.MouseEvent<HTMLButtonElement>) => {
-		// TEXT_NODE
+	const choosePage = (i: number) => {
 		// textContent
 		// innerText
 		// innerHTML
-		setPageNumber(e.currentTarget.innerText)
+		setPageNum(i)
 	}
 
 	// const pageButtons = movieCount > 0 ? 
 	const buttonCount = Math.ceil(movieCount / 10) 
 	console.log(buttonCount)
 	const buttons = () => {
-		const startButton = 1
-		const endButton = 10
+		const startButton = page
+		const endButton = page + 9
 		const buttonArray = []
 		for (let i = startButton; i <= endButton; i++) {
-			buttonArray.push(<button key={ i } onClick={ choosePage }>{ i }</button>)
+			buttonArray.push(<button key={ i } onClick={ () => choosePage(i) }>{ i }</button>)
 		}
 		return (
 			buttonArray.map((b) => b)

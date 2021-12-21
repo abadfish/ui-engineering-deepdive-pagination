@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Movie } from '../../index.d'
 import { MovieContext } from '../../context'
 import SearchBar from '../../components/SearchBar'
@@ -8,9 +9,10 @@ const Movies: React.FC = () => {
 	// props will be page number, next page, movies, search term
 
 	const { page, searchTerm, movies } = useContext(MovieContext)
+	console.log(movies)
 
-	const movieList = movies?.map((m:Movie) => (
-		<p key={ m.imdbID }>{ m.Title }</p>
+	const movieList = movies?.map((m:Movie, i) => (
+		<p key={ i }><NavLink to={ `/movies/${ m.imdbID }` }>{ m.Title }</NavLink></p>
 	))
   
 	return (
@@ -19,7 +21,7 @@ const Movies: React.FC = () => {
 			<SearchBar />
 			{ movies && movies?.length > 0 && <h2>Viewing page { page } of movies that match &quot;{ searchTerm }&quot;</h2> }
 			{ movieList }
-			<PageButtons />
+			{ movies && movies?.length > 0 && <PageButtons /> }
 		</div>
 	)
 }

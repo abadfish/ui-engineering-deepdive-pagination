@@ -16,7 +16,8 @@ enum ActionType {
   SUCCESSFUL_MOVIE_FETCH = 'SUCCESSFUL_MOVIE_FETCH',
 	INCREMENT_PAGE = 'INCREMENT_PAGE',
 	DECREMENT_PAGE = 'DECREMENT_PAGE',
-	SET_SEARCH_TERM = 'SET_SEARCH_TERM'
+	SET_SEARCH_TERM = 'SET_SEARCH_TERM',
+	SET_PAGE_NUM = 'SET_PAGE_NUM'
 }
 
 interface Action {
@@ -34,11 +35,12 @@ interface State {
 	searchTerm: string
 	page: number
 	movieCount: number
-	fetchMovies: (searchTerm:string, page:number) => Promise<any>
-	fetchMovie: (imdbID:string) => Promise<Response>
+	fetchMovies?: (searchTerm:string, page:number) => Promise<void>
+	fetchMovie?: (imdbID:string) => Promise<void>
 	incrementPage: () => void
 	decrementPage: () => void
 	setSearchTerm: (term:string) => void
+	setPageNum: (pageNum:number) => void
 }
 
 const initialState:State = {
@@ -49,11 +51,12 @@ const initialState:State = {
 	searchTerm: '',
 	page: 1,
 	movieCount: 0,
-	fetchMovies: (searchTerm: string, page:number) => new Promise((resolve, reject) => {}),
-	fetchMovie: (imdbID:string) => new Promise((resolve, reject) => {}),
+	// fetchMovies: (searchTerm: string, page:number) => new Promise((resolve, reject) => {}),
+	// fetchMovie: (imdbID:string) => new Promise((resolve, reject) => {}),
 	incrementPage: () => {},
 	decrementPage: () => {},
-	setSearchTerm: (term:string) => {}
+	setSearchTerm: (term:string) => {},
+	setPageNum: (pageNum:number) => {}
 }
 
 export const MovieContext = createContext(initialState)
@@ -106,6 +109,11 @@ const reducer:React.Reducer<State, Action> = (state, action) => {
 			...state,
 			searchTerm: action.payload
 		}
+	case ActionType.SET_PAGE_NUM:
+		return { 
+			...state,
+			page: action.payload
+		}
 	default:
 		return state
 	}
@@ -129,7 +137,9 @@ const MovieProvider: React.FC  = ({ children }) => {
 	}
 
 	const fetchMovie = (imdbID:string) => {
-		return fetch('')
+		return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`)
+			.then(res => res.json())
+			.then(res => dispatch({ type: ActionType.SUCCESSFUL_MOVIES_FETCH, payload: res }))
 	}
 
 	const decrementPage = () => {
@@ -144,6 +154,10 @@ const MovieProvider: React.FC  = ({ children }) => {
 		dispatch({ type: ActionType.SET_SEARCH_TERM, payload: term })
 	}
 
+	const setPageNum = (pageNum:number) => {
+		dispatch({ type: ActionType.SET_PAGE_NUM, payload: pageNum })
+	}
+
 	const values = {
 		loading: state.loading,
 		errors: state.errors,
@@ -156,7 +170,8 @@ const MovieProvider: React.FC  = ({ children }) => {
 		fetchMovie,
 		incrementPage,
 		decrementPage,
-		setSearchTerm
+		setSearchTerm,
+		setPageNum
 	}
 	
 	return (
