@@ -35,7 +35,7 @@ interface State {
 	page: number
 	movieCount: number
 	fetchMovies: (searchTerm:string, page:number) => Promise<any>
-	fetchMovie: (imdbId:string) => Promise<Response>
+	fetchMovie: (imdbID:string) => Promise<Response>
 	incrementPage: () => void
 	decrementPage: () => void
 	setSearchTerm: (term:string) => void
@@ -50,7 +50,7 @@ const initialState:State = {
 	page: 1,
 	movieCount: 0,
 	fetchMovies: (searchTerm: string, page:number) => new Promise((resolve, reject) => {}),
-	fetchMovie: (imdbId:string) => new Promise((resolve, reject) => {}),
+	fetchMovie: (imdbID:string) => new Promise((resolve, reject) => {}),
 	incrementPage: () => {},
 	decrementPage: () => {},
 	setSearchTerm: (term:string) => {}
