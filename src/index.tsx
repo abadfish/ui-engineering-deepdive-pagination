@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import App from './App'
 import MovieProvider from './context'
-import './styles.css'
 
 
 ReactDOM.render(

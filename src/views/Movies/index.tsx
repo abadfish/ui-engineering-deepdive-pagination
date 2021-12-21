@@ -1,29 +1,40 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import { Movie } from '../../index.d'
 import { MovieContext } from '../../context'
 import SearchBar from '../../components/SearchBar'
+import MovieCard from '../../components/MovieCard'
 import PageButtons from '../../components/PageButtons'
 
 const Movies: React.FC = () => {
-	// props will be page number, next page, movies, search term
 
 	const { page, searchTerm, movies } = useContext(MovieContext)
-	console.log(movies)
 
 	const movieList = movies?.map((m:Movie, i) => (
-		<p key={ i }><NavLink to={ `/movies/${ m.imdbID }` }>{ m.Title }</NavLink></p>
+		<NavLink to={ `/movies/${ m.imdbID }` } key={ i }>
+			<MovieCard movie={ m } />
+		</NavLink>
 	))
   
 	return (
-		<div>
-			<h1>Movie App</h1>
+		<MoviesPage>
 			<SearchBar />
 			{ movies && movies?.length > 0 && <h2>Viewing page { page } of movies that match &quot;{ searchTerm }&quot;</h2> }
-			{ movieList }
+			<MovieList>{ movieList }</MovieList>
 			{ movies && movies?.length > 0 && <PageButtons /> }
-		</div>
+		</MoviesPage>
 	)
 }
 
 export default Movies
+
+const MoviesPage = styled.main `
+
+`
+const MovieList = styled.section `
+	padding: 2rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+`

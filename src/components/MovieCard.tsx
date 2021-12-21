@@ -1,9 +1,14 @@
 import React from 'react'
+import { Movie } from '../index.d'
 
-const MovieCard = () => {
+type Props = {
+	movie: Movie
+}
+
+const MovieCard:React.FC<Props> = ({ movie }) => {
 	return (
 		<div>
-      
+			{ movie.Title }
 		</div>
 	)
 }

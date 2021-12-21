@@ -139,7 +139,7 @@ const MovieProvider: React.FC  = ({ children }) => {
 	const fetchMovie = (imdbID:string) => {
 		return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`)
 			.then(res => res.json())
-			.then(res => dispatch({ type: ActionType.SUCCESSFUL_MOVIES_FETCH, payload: res }))
+			.then(res => dispatch({ type: ActionType.SUCCESSFUL_MOVIE_FETCH, payload: res }))
 	}
 
 	const decrementPage = () => {
