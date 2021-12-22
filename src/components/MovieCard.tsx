@@ -25,7 +25,7 @@ export default MovieCard
 const MovieArticle = styled.article `
 	width: 50vw;
 	background-color: #f3f3f3;
-	padding: 1.5rem 3rem;
+	padding: 1rem 3rem;
 	margin: 1rem 0;
 	display: flex;
 	// grid-template-columns: 30% 70%;
