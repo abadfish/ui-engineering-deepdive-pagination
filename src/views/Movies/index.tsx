@@ -20,8 +20,10 @@ const Movies: React.FC = () => {
 	return (
 		<MoviesPage>
 			<SearchBar />
-			{ movies && movies?.length > 0 && <h2>Viewing page { page } of movies that match &quot;{ searchTerm }&quot;</h2> }
-			<MovieList>{ movieList }</MovieList>
+			<MovieList>
+				{ movies && movies?.length > 0 && <h2>Viewing page { page } of movies that match &quot;{ searchTerm }&quot;</h2> }
+				{ movieList }
+			</MovieList>
 			{ movies && movies?.length > 0 && <PageButtons /> }
 		</MoviesPage>
 	)
@@ -33,8 +35,12 @@ const MoviesPage = styled.main `
 
 `
 const MovieList = styled.section `
-	padding: 2rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
 `

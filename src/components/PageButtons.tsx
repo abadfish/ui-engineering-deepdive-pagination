@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { MovieContext } from '../context'
+import { ControlsSection } from './SearchBar'
 
 const PageButtons: React.FC = () => {
 
@@ -29,11 +30,11 @@ const PageButtons: React.FC = () => {
 	}
 
 	return (
-		<div>
+		<ControlsSection>
 			<button onClick={ decrementPage }>back</button>
 			{ buttons() }
 			<button onClick={ incrementPage }>next</button>
-		</div>
+		</ControlsSection>
 	)
 }
 
