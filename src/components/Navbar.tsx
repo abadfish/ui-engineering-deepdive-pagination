@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Navbar = () => {
 	return (
 		<Nav>
-			<NavLink to='/'><h1>Movie App</h1></NavLink>
+			<NavLink to='/'><h1>Movie Search App</h1></NavLink>
 		</Nav>
 	)
 }
