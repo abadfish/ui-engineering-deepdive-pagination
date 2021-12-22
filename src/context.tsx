@@ -125,7 +125,7 @@ const MovieProvider: React.FC  = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 
 	useEffect(() => {
-		if (state.page > 1) {
+		if (state.movies) {
 			fetchMovies(state.searchTerm, state.page)
 		}
 	}, [state.page])
