@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-empty-function */
 // ^^^ how can I put this in lintrc ?
 
 import React, { createContext, useReducer, useEffect } from 'react'
@@ -131,6 +130,7 @@ const MovieProvider: React.FC  = ({ children }) => {
 			fetchMovies(state.searchTerm, state.page)
 		}
 	}, [state.page])
+
 
 	const fetchMovies = (searchTerm:string, page:number) => {
 		return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}&page=${page}`)
