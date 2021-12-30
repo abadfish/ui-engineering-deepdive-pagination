@@ -1,6 +1,6 @@
 // __tests__/fetch.test.js
 import React from 'react'
-import {render, fireEvent, waitFor, screen} from '@testing-library/react'
+import {render, fireEvent, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import PageButtons from './PageButtons'
 import { MovieContext } from '../context'
