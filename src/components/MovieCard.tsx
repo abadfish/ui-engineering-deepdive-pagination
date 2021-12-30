@@ -8,10 +8,10 @@ type Props = {
 
 const MovieCard:React.FC<Props> = ({ movie }) => {
 	return (
-		<MovieArticle>
+		<MovieArticle data-testid='movie-card'>
 			<img src={`${ movie.Poster }`} alt="movie poster" />
 			<div>
-				<h2>{ movie.Title } - { movie.Year }</h2>
+				<h2 data-testid='movie-title'>{ movie.Title } - { movie.Year }</h2>
 				<p>{ movie.Type }</p>
 			
 			</div>

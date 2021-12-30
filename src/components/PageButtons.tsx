@@ -7,21 +7,16 @@ const PageButtons: React.FC = () => {
 
 	const { page, incrementPage, decrementPage, movieCount, setPageNum } = useContext(MovieContext)
 
-	const choosePage = (i: number) => {
-		setPageNum(i)
-	}
-
 	// const pageButtons = movieCount > 0 ? 
 	const buttonCount = Math.ceil(movieCount / 10) 
-	console.log(buttonCount)
 
 	return (
 		<ControlsSection>
-			<PgButton onClick={ () => choosePage(1) }>first</PgButton>
+			<PgButton onClick={ () => setPageNum(1) } data-testid='btn-first'>first</PgButton>
 			<PgButton onClick={ decrementPage }>back</PgButton>
 			<PgButton>{ page }</PgButton>
 			<PgButton onClick={ incrementPage }>next</PgButton>
-			<PgButton onClick={ () => choosePage(buttonCount) }>last</PgButton>
+			<PgButton onClick={ () => setPageNum(buttonCount) }>last</PgButton>
 		</ControlsSection>
 	)
 }
