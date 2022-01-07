@@ -21,6 +21,7 @@ const SearchBar: React.FC = () => {
 		<ControlsSection>
 			<SearchForm>
 				<input 
+					data-testid='search-input'
 					type='text'
 					name='searchTerm'
 					onChange={ handleOnChange }
