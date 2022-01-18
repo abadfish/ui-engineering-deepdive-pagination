@@ -1,22 +1,33 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { MovieContext } from '../context'
+// import { MovieContext } from '../context'
 import { ControlsSection } from './SearchBar'
 
-const PageButtons: React.FC = () => {
+interface PageButtonProps {
+	page: number 
+	setPage: (page:number) => void
+	pageTotal:number
+}
 
-	const { page, incrementPage, decrementPage, movieCount, setPageNum } = useContext(MovieContext)
+const PageButtons: React.FC<PageButtonProps> = (props) => {
+	
+	const { page, pageTotal, setPage } = props
 
-	// const pageButtons = movieCount > 0 ? 
-	const buttonCount = Math.ceil(movieCount / 10) 
+	const decrementPage = () => {
+		setPage(page - 1)
+	}
+
+	const incrementPage = () => {
+		setPage(page + 1)
+	}
 
 	return (
 		<ControlsSection>
-			<PgButton onClick={ () => setPageNum(1) } data-testid='btn-first'>first</PgButton>
+			<PgButton onClick={ () => setPage(1) } data-testid='btn-first'>first</PgButton>
 			<PgButton onClick={ decrementPage }>back</PgButton>
 			<PgButton>{ page }</PgButton>
 			<PgButton onClick={ incrementPage }>next</PgButton>
-			<PgButton onClick={ () => setPageNum(buttonCount) } data-testid='btn-last'>last</PgButton>
+			<PgButton onClick={ () => setPage(pageTotal) } data-testid='btn-last'>last</PgButton>
 		</ControlsSection>
 	)
 }
@@ -50,3 +61,6 @@ const PgButton = styled.button `
 // 	)
 // 	// if (buttonCount > 10 && page )
 // }
+
+// const { page, incrementPage, decrementPage, movieCount, setPageNum } = useContext(MovieContext)
+// const buttonCount = Math.ceil(movieCount / 10) 

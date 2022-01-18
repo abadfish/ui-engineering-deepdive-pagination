@@ -1,10 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { MovieContext } from '../context'
+// import { Movie } from '../types'
+// import { MovieContext } from '../context'
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+	fetchMovies: () => void
+	searchTerm: string
+	setSearchTerm: (searchTerm) => void
+}
 
-	const { setSearchTerm, fetchMovies, page, searchTerm } = useContext(MovieContext)
+const SearchBar: React.FC<SearchBarProps> = (props) => {
+
+	const { setSearchTerm, fetchMovies, searchTerm } = props
+	// const { setSearchTerm, fetchMovies, page, searchTerm } = useContext(MovieContext)
 
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
@@ -13,7 +21,7 @@ const SearchBar: React.FC = () => {
 	const queryOmdbApi = (e:React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault() 
 		if (searchTerm) {
-			fetchMovies(searchTerm, page)
+			fetchMovies()
 		}
 	}
 

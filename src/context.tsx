@@ -62,7 +62,7 @@ const initialState:State = {
 
 export const MovieContext = createContext(initialState)
 
-const reducer:React.Reducer<State, Action> = (state, action) => {
+export const reducer:React.Reducer<State, Action> = (state, action) => {
 	switch(action.type) {
 	case ActionType.MAKING_API_REQUEST:
 		return { 
