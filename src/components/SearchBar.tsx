@@ -6,7 +6,7 @@ import styled from 'styled-components'
 interface SearchBarProps {
 	fetchMovies: () => void
 	searchTerm: string
-	setSearchTerm: (searchTerm) => void
+	setSearchTerm: (searchTerm:string) => void
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props) => {
