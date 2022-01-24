@@ -23,6 +23,7 @@ const Movie:React.FC = () => {
 
 	useEffect(() => {
 		if (imdbID) {
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const res = getMovie(imdbID)
 				.then(res => setMovie(res))
 		}
