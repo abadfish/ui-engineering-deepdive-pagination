@@ -4,7 +4,7 @@ import {render, fireEvent, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import PageButtons from './PageButtons'
 // import { MovieContext } from '../context'
-import { contextProps } from './testContextProps'
+// import { contextProps } from './testContextProps'
 
 describe('PageButtons', () => {
 	describe('First page button', () => {
@@ -29,8 +29,8 @@ describe('PageButtons', () => {
 			fireEvent.click(screen.getByTestId('btn-first'))
 	
 			// ASSERT:
-			expect(contextProps.setPageNum).toHaveBeenCalledTimes(1)
-			expect(contextProps.setPageNum).toHaveBeenCalledWith(1)
+			expect(setPage).toHaveBeenCalledTimes(1)
+			expect(setPage).toHaveBeenCalledWith(1)
 		})
 	})
 	describe('Last page button', () => {
@@ -50,9 +50,25 @@ describe('PageButtons', () => {
 			)
 	
 			fireEvent.click(screen.getByTestId('btn-last'))
+			expect(setPage).toHaveBeenCalledWith(10)
+		})
+	})
+	describe('Next page button', () => {
+		it('increments page by 1', async () => {
+			const pageTotal = 10 // fake
+			const page = 2 // mock
+			const setPage = jest.fn()
+
+			render(
+				<PageButtons 
+					page={ page }
+					pageTotal={ pageTotal }
+					setPage={ setPage }
+				/>
+			)
 	
-			expect(contextProps.setPageNum).toHaveBeenCalledTimes(2)
-			expect(contextProps.setPageNum).toHaveBeenCalledWith(10)
+			fireEvent.click(screen.getByTestId('btn-next'))
+			expect(setPage).toHaveBeenCalledWith(3)
 		})
 	})
 })

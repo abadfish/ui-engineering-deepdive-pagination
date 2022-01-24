@@ -10,9 +10,9 @@ export interface Movie {
 	Poster: string
 	Year: string
 	Type: string
-	imdbRating: string
-	Plot: string 
-	Genre: string
+	// imdbRating: string
+	// Plot: string 
+	// Genre: string
 }
 
 enum ResponseStatus {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Movie } from '../../index.d'
@@ -12,10 +12,16 @@ import PageButtons from '../../components/PageButtons'
 const Movies: React.FC = () => {
 
 	// const { page, searchTerm, movies } = useContext(MovieContext)
-	const [movies, setMovies] = useState([])
+	const [movies, setMovies] = useState<Movie[]>([{
+		Title: 'Reservoir Dogs',
+		Year: '1992',
+		imdbID: 'tt0105236',
+		Type: 'movie',
+		Poster: 'https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'
+	}])
 	const [page, setPage] = useState(1) 
 	const [pageTotal, setPageTotal] = useState(1)
-	const [searchTerm, setSearchTerm] = useState('Star Wars')
+	const [searchTerm, setSearchTerm] = useState('Dogs')
 	const [error, setError] = useState('')
 
 	console.log(error)
@@ -30,6 +36,10 @@ const Movies: React.FC = () => {
 			setError(moviesRes.Error)
 		}
 	}
+
+	useEffect(() => {
+		fetchMovies()
+	}, [page])
 
 	const movieList = movies?.map((m:Movie, i) => (
 		<NavLink to={ `/movies/${ m.imdbID }` } key={ i }>

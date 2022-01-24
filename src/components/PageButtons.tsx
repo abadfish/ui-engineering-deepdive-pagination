@@ -26,7 +26,7 @@ const PageButtons: React.FC<PageButtonProps> = (props) => {
 			<PgButton onClick={ () => setPage(1) } data-testid='btn-first'>first</PgButton>
 			<PgButton onClick={ decrementPage }>back</PgButton>
 			<PgButton>{ page }</PgButton>
-			<PgButton onClick={ incrementPage }>next</PgButton>
+			<PgButton onClick={ incrementPage } data-testid='btn-next'>next</PgButton>
 			<PgButton onClick={ () => setPage(pageTotal) } data-testid='btn-last'>last</PgButton>
 		</ControlsSection>
 	)

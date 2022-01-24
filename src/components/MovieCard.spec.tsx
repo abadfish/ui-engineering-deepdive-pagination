@@ -19,9 +19,9 @@ test('Renders a movie card with a poster, title, and year', () => {
 		Year: '1986',
 		Type: 'movie',
 		imdbID: '',
-		imdbRating: '',
-		Plot: '',
-		Genre: ''
+		// imdbRating: '',
+		// Plot: '',
+		// Genre: ''
 	}
 	render (
 		<MovieCard movie={ movie } />

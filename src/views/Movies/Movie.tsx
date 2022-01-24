@@ -1,20 +1,33 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { MovieContext } from '../../context'
+import { getMovie } from '../../fetchMovieData'
+import { Movie } from '../../types'
+// import { MovieContext } from '../../context'
 
-const Movie = () => {
+const Movie:React.FC = () => {
 
-	const { fetchMovie, movie } = useContext(MovieContext)
+	const [movie, setMovie] = useState<Movie>({
+		'Title': 'Reservoir Dogs',
+		'Year': '1992',
+		'Genre': 'Crime, Drama, Thriller',
+		'Plot': 'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.',
+		'Poster': 'https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
+		'imdbRating': '8.3',
+		'imdbID': 'tt0105236',
+		'Type': 'movie',
+	})
+
+	// const { fetchMovie, movie } = useContext(MovieContext)
 	const { imdbID } = useParams()
 
 	useEffect(() => {
 		if (imdbID) {
-			fetchMovie(imdbID)
+			const res = getMovie(imdbID)
+				.then(res => setMovie(res))
 		}
 	}, [])
 
-	console.log(movie)
 
 	return (
 		<MoviePage>

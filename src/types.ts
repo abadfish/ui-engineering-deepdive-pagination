@@ -15,7 +15,7 @@ export enum ResponseStatus {
 	False = 'False'
 }
 
-type ApiResponse = {
+export type ApiResponse = {
 	Search: Movie[],
 	totalResults: string,
 	Response: ResponseStatus.True
