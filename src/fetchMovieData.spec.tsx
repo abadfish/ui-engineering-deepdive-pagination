@@ -26,7 +26,7 @@ describe('Can fetch movies correctly', () => {
 			})
 		const result = await getMovies(searchTerm, page)
 		console.log(moviesResponse)
-		expect(result).toContain(moviesResponse.Search[0])
+		expect(result.Search[0]).toContain(moviesResponse.Search[0])
 	})
 
 })

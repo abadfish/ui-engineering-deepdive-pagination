@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import { setupServer } from 'msw/node'
 import { rest } from 'msw'
-import MoviePage from './MoviePage'
+import MoviePage from './Movie'
 import { ApiResponseGetMovie } from '../../types'
 
 const movieResponse: ApiResponseGetMovie = {

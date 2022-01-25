@@ -12,8 +12,8 @@ import {
 import { setupServer } from 'msw/node'
 import { rest } from 'msw'
 import Movies from './views/Movies'
-import MoviePage from './views/Movies/MoviePage'
-import { ApiResponse, ApiResponseGetMovie, ResponseStatus } from './types'
+import MoviePage from './views/Movies/Movie'
+import { ApiResponse, ResponseStatus } from './types'
 
 const moviesResponse: ApiResponse = {
 	Search: [{
