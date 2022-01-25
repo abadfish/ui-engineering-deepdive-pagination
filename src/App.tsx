@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Movies from './views/Movies'
-import MoviePage from './views/Movies/Movie'
+import MoviePage from './views/Movies/MoviePage'
 import Navbar from './components/Navbar'
 import './styles.css'
 

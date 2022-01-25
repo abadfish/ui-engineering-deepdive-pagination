@@ -10,15 +10,16 @@ const MoviePage:React.FC = () => {
 	const [movie, setMovie] = useState<Movie>({
 		'Title': 'Reservoir Dogs',
 		'Year': '1992',
-		'Genre': 'Crime, Drama, Thriller',
-		'Plot': 'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.',
+		// 'Genre': 'Crime, Drama, Thriller',
+		// 'Plot': 'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.',
 		'Poster': 'https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-		'imdbRating': '8.3',
+		// 'imdbRating': '8.3',
 		'imdbID': 'tt0105236',
 		'Type': 'movie',
 	})
 
 	// const { fetchMovie, movie } = useContext(MovieContext)
+	// const { imdbID }:{ imdbID:string } = useParams()
 	const { imdbID } = useParams()
 
 	useEffect(() => {
@@ -39,9 +40,9 @@ const MoviePage:React.FC = () => {
 					<h2 data-testid='display-year'>{ movie?.Year }</h2>
 				</TitleBar>
 			
-				<h3>{ movie?.Genre }</h3>
+				{/* <h3>{ movie?.Genre }</h3>
 				<p>{ movie?.Plot }</p>
-				<p>IMDB Rating: { movie?.imdbRating }</p>
+				<p>IMDB Rating: { movie?.imdbRating }</p> */}
 				<button>Add To Favorites</button>
 			</div>
 		</MovieShowPage>
