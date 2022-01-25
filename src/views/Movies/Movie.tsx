@@ -5,7 +5,7 @@ import { getMovie } from '../../fetchMovieData'
 import { Movie } from '../../types'
 // import { MovieContext } from '../../context'
 
-const Movie:React.FC = () => {
+const MoviePage:React.FC = () => {
 
 	const [movie, setMovie] = useState<Movie>({
 		'Title': 'Reservoir Dogs',
@@ -31,22 +31,26 @@ const Movie:React.FC = () => {
 
 
 	return (
-		<MoviePage>
+		<MovieShowPage>
 			<img src={`${ movie?.Poster }`} alt="movie poster" />
 			<div>
-				<h2>{ movie?.Title } - { movie?.Year }</h2>
+				<TitleBar>
+					<h2 data-testid="display-title">{ movie?.Title } - </h2>
+					<h2 data-testid='display-year'>{ movie?.Year }</h2>
+				</TitleBar>
+			
 				<h3>{ movie?.Genre }</h3>
 				<p>{ movie?.Plot }</p>
 				<p>IMDB Rating: { movie?.imdbRating }</p>
 				<button>Add To Favorites</button>
 			</div>
-		</MoviePage>
+		</MovieShowPage>
 	)
 }
 
-export default Movie
+export default MoviePage
 
-const MoviePage = styled.main `
+const MovieShowPage = styled.main `
 	padding: 4rem 6rem;
 	display: flex;
 	img {
@@ -65,4 +69,8 @@ const MoviePage = styled.main `
 			width: 200px;
 		}
 	}
+`
+
+const TitleBar = styled.header `
+	display: flex;
 `
