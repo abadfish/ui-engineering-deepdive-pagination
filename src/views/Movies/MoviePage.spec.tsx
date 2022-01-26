@@ -3,8 +3,8 @@ import 'whatwg-fetch' // needed as fetch is not injected by jest
 import '@testing-library/jest-dom'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
-import { setupServer } from 'msw/node'
-import { rest } from 'msw'
+// import { setupServer } from 'msw/node'
+// import { rest } from 'msw'
 import MoviePage from './MoviePage'
 import { ApiResponseGetMovie } from '../../types'
 
@@ -67,6 +67,18 @@ jest.mock('../../fetchMovieData', () => {
 	}
 })
 
+describe('Can fetch movie correctly', () => {
+	test('loads and displays movie page', async () => {
+		render( <MoviePage /> )
+
+		// ASSERT:
+		// const movieYear = await screen.findByText('1992') 
+		const movieYear = await waitFor(() => screen.getByText('1992'))
+		expect(movieYear).toBeVisible()
+		expect(screen.getByTestId('display-title')).toHaveTextContent('Reservoir Dogs')
+		expect(screen.getByTestId('display-year')).toHaveTextContent('1992')
+	})
+})
 
 // Stub for the fetch request
 // const server = setupServer(
@@ -79,17 +91,3 @@ jest.mock('../../fetchMovieData', () => {
 // beforeAll(() => server.listen())
 // afterEach(() => server.resetHandlers())
 // afterAll(() => server.close())
-
-describe('Can fetch movie correctly', () => {
-	test('loads and displays movie page', async () => {
-		render( <MoviePage /> )
-
-		// ASSERT:
-		// const movieYear = await screen.findByText('1992') 
-		const movieYear = await waitFor(() => screen.getByText('1992'))
-		expect(movieYear).toBeVisible()
-		expect(screen.getByTestId('display-title')).toHaveTextContent('Reservoir Dogs')
-		// expect(screen.getByTestId('display-year')).toHaveTextContent('1992')
-	})
-})
-
