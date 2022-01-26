@@ -28,6 +28,11 @@ type ApiResponseNotFound = {
 
 export type FullApiResponse = ApiResponse | ApiResponseNotFound
 
+// type guard
+export function isApiResponse(data:FullApiResponse): data is ApiResponse{
+	return (data as ApiResponse).Search !== undefined
+}
+
 export type MovieRating = {
 	Source: string,
 	Value: string

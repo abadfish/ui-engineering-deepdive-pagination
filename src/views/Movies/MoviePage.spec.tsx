@@ -8,6 +8,10 @@ import { rest } from 'msw'
 import MoviePage from './MoviePage'
 import { ApiResponseGetMovie } from '../../types'
 
+
+// Note: because the data fetching is separated from the component we can test is also separately
+// In the component itself, we can mock the data fetch function without the need of a stub
+
 const movieResponse: ApiResponseGetMovie = {
 	'Title': 'Reservoir Dogs',
 	'Year': '1992',
@@ -49,16 +53,32 @@ const movieResponse: ApiResponseGetMovie = {
 	'Response': 'True'
 }
 
-const server = setupServer(
-	rest.get('http://www.omdbapi.com/*', (req, res, ctx) => {
-		console.log(req)
-		return res(ctx.json(movieResponse))
-	}),
-)
 
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+// module mock: we replace the function with a fake implementation
+jest.mock('../../fetchMovieData', () => {
+	const originalModule = jest.requireActual('../../fetchMovieData')
+
+	return {
+		__esModule: true,
+		...originalModule,
+		getMovie: () => {
+			return movieResponse
+		},
+	}
+})
+
+
+// Stub for the fetch request
+// const server = setupServer(
+// 	rest.get('http://www.omdbapi.com/*', (req, res, ctx) => {
+// 		console.log(req)
+// 		return res(ctx.json(movieResponse))
+// 	}),
+// )
+
+// beforeAll(() => server.listen())
+// afterEach(() => server.resetHandlers())
+// afterAll(() => server.close())
 
 describe('Can fetch movie correctly', () => {
 	test('loads and displays movie page', async () => {
