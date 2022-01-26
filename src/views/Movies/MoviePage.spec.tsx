@@ -49,8 +49,6 @@ const movieResponse: ApiResponseGetMovie = {
 	'Response': 'True'
 }
 
-
-// Stub for the fetch request
 const server = setupServer(
 	rest.get('http://www.omdbapi.com/*', (req, res, ctx) => {
 		console.log(req)
@@ -67,10 +65,10 @@ describe('Can fetch movie correctly', () => {
 		render( <MoviePage /> )
 
 		// ASSERT:
-		const movieYear = await screen.findByText('1992') 
-		// await waitFor(() => screen.getByText('Reservoir Dogs'))
+		// const movieYear = await screen.findByText('1992') 
+		const movieYear = await waitFor(() => screen.getByText('1992'))
 		expect(movieYear).toBeVisible()
-		// expect(screen.getByTestId('display-title')).toHaveTextContent('Reservoir Dogs')
+		expect(screen.getByTestId('display-title')).toHaveTextContent('Reservoir Dogs')
 		// expect(screen.getByTestId('display-year')).toHaveTextContent('1992')
 	})
 })

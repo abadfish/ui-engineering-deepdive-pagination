@@ -36,7 +36,8 @@ const MoviePage:React.FC = () => {
 			<img src={`${ movie?.Poster }`} alt="movie poster" />
 			<div>
 				<TitleBar>
-					<h2 data-testid="display-title">{ movie?.Title } - </h2>
+					<h2 data-testid="display-title">{ movie?.Title }</h2>
+					<h2> - </h2>
 					<h2 data-testid='display-year'>{ movie?.Year }</h2>
 				</TitleBar>
 			
