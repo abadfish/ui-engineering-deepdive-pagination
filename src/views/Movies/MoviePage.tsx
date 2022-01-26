@@ -5,20 +5,21 @@ import { getMovie } from '../../fetchMovieData'
 import { Movie } from '../../types'
 // import { MovieContext } from '../../context'
 
-const Movie:React.FC = () => {
+const MoviePage:React.FC = () => {
 
 	const [movie, setMovie] = useState<Movie>({
 		'Title': 'Reservoir Dogs',
 		'Year': '1992',
-		'Genre': 'Crime, Drama, Thriller',
-		'Plot': 'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.',
+		// 'Genre': 'Crime, Drama, Thriller',
+		// 'Plot': 'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.',
 		'Poster': 'https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-		'imdbRating': '8.3',
+		// 'imdbRating': '8.3',
 		'imdbID': 'tt0105236',
 		'Type': 'movie',
 	})
 
 	// const { fetchMovie, movie } = useContext(MovieContext)
+	// const { imdbID }:{ imdbID:string } = useParams()
 	const { imdbID } = useParams()
 
 	useEffect(() => {
@@ -31,22 +32,27 @@ const Movie:React.FC = () => {
 
 
 	return (
-		<MoviePage>
+		<MovieShowPage>
 			<img src={`${ movie?.Poster }`} alt="movie poster" />
 			<div>
-				<h2>{ movie?.Title } - { movie?.Year }</h2>
-				<h3>{ movie?.Genre }</h3>
+				<TitleBar>
+					<h2 data-testid="display-title">{ movie?.Title }</h2>
+					<h2> - </h2>
+					<h2 data-testid='display-year'>{ movie?.Year }</h2>
+				</TitleBar>
+			
+				{/* <h3>{ movie?.Genre }</h3>
 				<p>{ movie?.Plot }</p>
-				<p>IMDB Rating: { movie?.imdbRating }</p>
+				<p>IMDB Rating: { movie?.imdbRating }</p> */}
 				<button>Add To Favorites</button>
 			</div>
-		</MoviePage>
+		</MovieShowPage>
 	)
 }
 
-export default Movie
+export default MoviePage
 
-const MoviePage = styled.main `
+const MovieShowPage = styled.main `
 	padding: 4rem 6rem;
 	display: flex;
 	img {
@@ -65,4 +71,8 @@ const MoviePage = styled.main `
 			width: 200px;
 		}
 	}
+`
+
+const TitleBar = styled.header `
+	display: flex;
 `

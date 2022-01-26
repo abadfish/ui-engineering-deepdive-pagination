@@ -5,14 +5,14 @@ export interface Movie {
 	Poster: string
 	Year: string
 	Type: string
-	imdbRating: string
-	Plot: string 
-	Genre: string
+	// imdbRating: string
+	// Plot: string 
+	// Genre: string
 }
 
 export enum ResponseStatus {
-	True = 'True',
-	False = 'False'
+	'True' = 'True',
+	'False' = 'False'
 }
 
 export type ApiResponse = {
@@ -27,6 +27,11 @@ type ApiResponseNotFound = {
 }
 
 export type FullApiResponse = ApiResponse | ApiResponseNotFound
+
+// type guard
+export function isApiResponse(data:FullApiResponse): data is ApiResponse{
+	return (data as ApiResponse).Search !== undefined
+}
 
 export type MovieRating = {
 	Source: string,
